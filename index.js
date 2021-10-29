@@ -25,6 +25,7 @@ async function run() {
 
         const database = client.db("travio");
         const serviceCollection = database.collection("services");
+        const bookingCollection = database.collection("userBooking")
 
         // //get api
         app.get('/services', async (req, res) => {
@@ -32,25 +33,25 @@ async function run() {
             const services = await cusrsor.toArray();
             res.send(services)
         })
-        // //get single service 
-        // app.get('/services/:id', async (req, res) => {
-        //     const id = req.params.id;
-        //     const query = { _id: objectId(id) }
-        //     const service = await serviceCollection.findOne(query);
-        //     res.json(service);
-        // })
+        //get single service 
+        app.get('/services/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: objectId(id) }
+            const service = await serviceCollection.findOne(query);
+            res.json(service);
+        })
 
-        // //  POST API
+        //  POST API
 
-        // app.post('/services', async (req, res) => {
-        //     const service = req.body;
-        //     console.log('hit the post api');
+        app.post('/services', async (req, res) => {
+            const service = req.body;
+            console.log('hit the post api');
 
 
-        //     const result = await serviceCollection.insertOne(service);
-        //     console.log(result);
-        //     res.json(result);
-        // })
+            const result = await bookingCollection.insertOne(service);
+            console.log(result);
+            res.json(result);
+        })
     }
     finally {
 
