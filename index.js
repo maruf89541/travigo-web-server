@@ -48,10 +48,29 @@ async function run() {
             console.log('hit the post api');
 
 
+            const result = await serviceCollection.insertOne(service);
+            console.log(result);
+            res.json(result);
+        })
+        app.post('/services', async (req, res) => {
+            const service = req.body;
+            console.log('hit the post api');
+
+
             const result = await bookingCollection.insertOne(service);
             console.log(result);
             res.json(result);
         })
+        app.get("/myEvents", async (req, res) => {
+            const result = await bookingCollection.find({}).toArray();
+            res.send(result);
+        });
+        app.get("/myEvents/:email", async (req, res) => {
+            const result = await bookingCollection.find({
+                email: req.params.email,
+            }).toArray();
+            res.send(result);
+        });
     }
     finally {
 
