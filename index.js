@@ -52,7 +52,7 @@ async function run() {
             console.log(result);
             res.json(result);
         })
-        app.post('/services', async (req, res) => {
+        app.post('/booking', async (req, res) => {
             const service = req.body;
             console.log('hit the post api');
 
