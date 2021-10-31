@@ -1,6 +1,6 @@
 const express = require('express');
 const { MongoClient } = require('mongodb');
-const objectId = require('mongodb').ObjectId
+const ObjectId = require('mongodb').ObjectId
 
 const cors = require('cors');
 require('dotenv').config()
@@ -71,7 +71,7 @@ async function run() {
             }).toArray();
             res.send(result);
         });
-        app.delete("/deleteBooking/:id", async (req, res) => {
+        app.delete("/myEvents/:id", async (req, res) => {
             console.log(req.params.id);
             const result = await bookingCollection.deleteOne({
                 _id: ObjectId(req.params.id),
