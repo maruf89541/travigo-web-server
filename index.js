@@ -71,6 +71,13 @@ async function run() {
             }).toArray();
             res.send(result);
         });
+        app.delete("/deleteBooking/:id", async (req, res) => {
+            console.log(req.params.id);
+            const result = await EventsCollection.deleteOne({
+                _id: ObjectId(req.params.id),
+            });
+            res.send(result);
+        });
     }
     finally {
 
